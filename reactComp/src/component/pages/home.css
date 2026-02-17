@@ -1,0 +1,29 @@
+.productSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.productSection h2{
+ text-align: center;
+}
+
+.productName{
+    font-size: 18px;
+    font-weight: bold;
+    margin: auto;
+    max-width: 1170;
+    gap: 20px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+}
+
+.productPicture img{
+    width: 100%;
+    height: auto;
+} 
+.productPicture h3{
+    text-align: center;
+}
