@@ -1,3 +1,5 @@
+import { Products } from '../../data/products'
+import Btn from '../common/btn'
 import './home.css'
 
 function Home(){
@@ -5,24 +7,22 @@ function Home(){
         <section className = "productSection">
             <h1>Product Session</h1>
             <div className = "productName"> 
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
 
-            </div>
-
+                {Products.map((obj , Index) => <Product data={obj}/>) }
+                
+                </div>
              </section>
     )
 }
 
-function Product(){
+function Product({data}){
     return(
                 <div className = "productPicture">
-                    <img src = "/product-1.webp" alt = "product"/>
-                    <h3> New Year Logo</h3>
+                    <img src = {data.thumbnail} alt = "product"/>
+                    <h3>{data.title}</h3>
+                    <Btn value = "Shop Now" colore = "red"/>
                 </div>
+                
     )
 }
 
