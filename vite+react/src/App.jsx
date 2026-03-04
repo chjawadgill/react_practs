@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function App(){
-  
-let nu = 1
+function App() {
+  const [name, setName] = useState("");
 
-let [ count, setCount] = useState(nu)
-useEffect( ()=>{
-  if (count == 5)
-  {alert("Hello this is useEffect")}
-},
- [count])
- 
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
-  return(
-
-    <div>
-    <h1> Hello Now the no is {count}</h1>
-    
-    <button onClick={()=> setCount(pre => pre+1) }>setState</button>
-    </div>
-  )
+  return (
+    <>
+      <input onChange={handleChange} rrrr/>
+      <p>{name}</p>
+    </>
+  );
 }
+
 export default App;
