@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import Check from './Check.jsx'
 import Multi from './Mul.jsx'
+import Form from './Form.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    {/* <App />
     <Check/>
     <Multi/>
-  </StrictMode>,
+    <br/> */}
+    <Form/>
+  </StrictMode>
 )
