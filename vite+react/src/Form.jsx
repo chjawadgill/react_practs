@@ -1,104 +1,106 @@
 import { useState } from "react";
 
+
 function Form() {
 
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
-    photo: null,
-    document: null,
+    gender: "",
+    job: "",
     agree: false
   });
 
-   const { name, value, type, checked, files } = e.target;
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
 
-    if (type === "checkbox") {
-      setForm({
-        ...form,
-        [name]: checked
-      });
-    }
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value
+    });
+    console.log([name])
+    console.log(type)
+  };
 
-    else if (type === "file") {
-      setForm({
-        ...form,
-        [name]: files[0]
-      });
-    }
-
-    else {
-      setForm({
-        ...form,
-        [name]: value
-      });
-    }
- }
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Form Data:", form);
-  }
+    console.log(formData);
+  };
 
   return (
-    <div>
+    <form className="form-container" onSubmit={handleSubmit}>
 
       <h2>User Registration</h2>
 
-      <form onSubmit={handleSubmit}>
+      {/* Name */}
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Enter your name"
+      />
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter name"
-          onChange={handleChange}
-        />
+      {/* Email */}
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Enter your email"
+      />
 
-        <br /><br />
+      {/* Gender Radio */}
+      <label>Gender</label>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <label>Upload Photo</label>
-        <input
-          type="file"
-          name="photo"
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <label>Upload Document</label>
-        <input
-          type="file"
-          name="document"
-          onChange={handleChange}
-        />
-
-        <br /><br />
+      <div className="radio-group">
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="Male"
+            onChange={handleChange}
+          />
+          Male
+        </label>
 
         <label>
           <input
-            type="checkbox"
-            name="agree"
+            type="radio"
+            name="gender"
+            value="Female"
             onChange={handleChange}
           />
-          I agree to terms
+          Female
         </label>
+      </div>
 
-        <br /><br />
+      {/* Role Dropdown */}
+      <label>Role</label>
 
-        <button type="submit">Submit</button>
+      <select name="job" value={formData.job} onChange={handleChange}>
+        <option value="">Select Role</option>
+        <option value="Developer">Developer</option>
+        <option value="Designer">Designer</option>
+        <option value="Manager">Manager</option>
+      </select>
 
-      </form>
+      {/* Checkbox */}
+      <label className="checkbox">
+        <input
+          type="checkbox"
+          name="agree"
+          checked={formData.agree}
+          onChange={handleChange}
+        />
+        I agree to terms
+      </label>
 
-    </div>
+      <button type="submit">Submit</button>
+
+    </form>
   );
 }
 
